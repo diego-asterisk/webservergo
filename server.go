@@ -25,8 +25,8 @@ func (this *Server) Listen() error {
 	return nil
 }
 
-func (this *Server) Handle(path string, handler http.HandlerFunc) {
-	this.router.addRule(path, handler)
+func (this *Server) Handle(method string, path string, handler http.HandlerFunc) {
+	this.router.addRule(method, path, handler)
 }
 
 // Devuelve el manejador resultado de aplicar los middlewares
