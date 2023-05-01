@@ -7,6 +7,8 @@ import "net/http"
 func main() {
 	server := ConstructorServer(":3000")
 	server.Handle(http.MethodGet, "/", server.AddMiddleware(HandleRoot, Logging()))
+	server.Handle(http.MethodPost, "/create", server.AddMiddleware(HandlePost, Logging()))
+	server.Handle(http.MethodPost, "/user", server.AddMiddleware(HandlePostUser, Logging()))
 	server.Handle(http.MethodPost, "/api", server.AddMiddleware(HandleAPI, CheckAuth(), Logging()))
 	server.Listen()
 }
